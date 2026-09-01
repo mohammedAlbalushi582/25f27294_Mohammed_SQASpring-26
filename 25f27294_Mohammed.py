@@ -23,6 +23,7 @@ def segment_customers(transactions, high_value_threshold, premium_threshold):
     high_value_customers = []
     regular_customers = []
     total_revenue = 0
+    premium_revenue = 0
 
     # NODE 2 - loop control
     for record in transactions:
@@ -38,6 +39,7 @@ def segment_customers(transactions, high_value_threshold, premium_threshold):
             if amount >= premium_threshold:
                 # NODE 6
                 premium_customers.append(record["customer_id"])
+                premium_revenue = premium_revenue + amount
             else:
                 # NODE 7
                 high_value_customers.append(record["customer_id"])
@@ -53,6 +55,7 @@ def segment_customers(transactions, high_value_threshold, premium_threshold):
         "high_value": high_value_customers,
         "regular": regular_customers,
         "total_revenue": total_revenue,
+        "premium_revenue": premium_revenue,
     }
 
 
